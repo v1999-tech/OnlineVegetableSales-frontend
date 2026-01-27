@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  postgres:
+  image: postgres:13
+  container_name: postgres-db
+  environment:
+    POSTGRES_DB: vegetabledb
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+  ports:
+    - "5432:5432"
+  networks:
+    - app=network
+
+app:
+  image: ovs:1.0
+  container_name: ovs-container
+  ports:
+    - "9090:8080"
+  depends_on:
+     - postgres
+  networks:
+    - app-network
+    
+networks:
+  app-network:
+    driver: bridge
