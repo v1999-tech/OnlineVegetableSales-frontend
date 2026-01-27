@@ -13,13 +13,13 @@ services:
   networks:
     - app=network
 
-ovs:
+  ovs:
   image: ovs:1.0
   container_name: ovs-container
   ports:
     - "9090:8080"
   depends_on:
-     - postgres
+    - postgres
   networks:
     - app-network
     
