@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git branch: 'master', 'https://github.com/v1999-tech/OnlineVegetableSales-frontend.git'
+        git branch: 'master', url: 'https://github.com/v1999-tech/OnlineVegetableSales-frontend.git'
       }
     }
     stage('Build') {
