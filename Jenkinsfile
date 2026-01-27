@@ -18,17 +18,6 @@ pipeline {
         bat 'mvn clean install -DskipTests'
       }
     }
-   /* stage('Test') {
-      steps {
-        echo "Running tests..."
-        bat 'mvn test'
-      }
-      post {
-        always {
-          junit '**/target/surefire-reports/*.xml'
-        }
-      }
-    }*/
     stage('Package') {
       steps {
         echo "Packaging..."
