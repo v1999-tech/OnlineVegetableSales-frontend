@@ -38,11 +38,11 @@ pipeline {
     stage('Docker Build & Deploy') {
       steps {
         echo "Building Docker image..."
-        bat "docker build -t %DOCKER_IMAGES% ."
+        bat "docker build -t ovs:1.0 ."
         echo "stopping old container (if exists)..."
         bat "docker rm -f ovs-container || echo 'No container to remove'"
         echo "Running new container..."
-        bat "docker run -d --name ovs-container -p 8080:8080 %DOCKER_IMAGE%
+        bat "docker run -d --name ovs-container -p 8080:8080 ovs:1.0"
       }
     }
     stage('Verify Deployment') {
