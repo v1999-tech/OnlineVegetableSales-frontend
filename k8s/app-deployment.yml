@@ -3,7 +3,7 @@ kind: Deployment     # Deployment is a k8s object that manages pods
 metadata:            
   name: ovs-app      # Deployment name
 spec:
-  replicas: 1        # Run specified copy of application pods
+  replicas: 3        # Run specified copy of application pods
   selector:
     matchLabels:
       app: ovs       # specifies which pod belong to this deployment
