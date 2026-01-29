@@ -12,6 +12,7 @@ pipeline {
         git branch: 'master', url: 'https://github.com/v1999-tech/OnlineVegetableSales-frontend.git'
       }
     }
+    stages 
     stage('Build') {
       steps {
         echo "Building with Maven..."
@@ -27,7 +28,14 @@ pipeline {
     stage('Docker Build & Deploy') {
       steps {
         echo "Building Docker image..."
-        bat "docker build -t ovs:1.0 ."
+        bat "docker build -t vijetavernekar/ovs:1.0 ."
+      }
+    }
+    stage('Docker Push to Docker Hub') {
+      steps {
+        withcredentials([usernamePassword(credentialsId:'dockerhub-creds', usernameVariable:'DOCKER_USER', passwordVariable:'DOCKER_PASS')]) {
+          bat """docker login -u %DOCKER_USER% -p %DOCKER_PASS% docker push vijetavernekar/ovs:1.0"""
+        }
       }
     }
     stage('Deploy with Docker Compose') {
