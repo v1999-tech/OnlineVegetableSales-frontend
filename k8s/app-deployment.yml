@@ -6,14 +6,14 @@ spec:
   replicas: 1        # Run specified copy of application pods
   selector:
     matchLabels:
-      app: ovs
+      app: ovs       # specifies which pod belong to this deployment
   template:
     metadata:
       labels:
-        app: ovs
+        app: ovs     # Ensures the pods created have the lable app=ovs
     spec:
       containers:
-      - name: ovs
+      - name: ovs    # container inside the pod is ovs
         image: vijetavernekar/ovs:1.0
         imagePullPolicy: IfNotPresent
         ports:
