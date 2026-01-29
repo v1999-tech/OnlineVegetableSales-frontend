@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: ovs
-        image: onlineveg:latest
+        image: vijetavernekar/ovs:1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
