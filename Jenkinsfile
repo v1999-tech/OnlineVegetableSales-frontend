@@ -36,6 +36,11 @@ pipeline {
         bat "docker-compose up -d"
       }
     }
+    stage('Deploy to Kubernetes') {
+      steps {
+        bat 'kubectl apply -f k8s/'
+      }
+    }
     stage('Verify Deployment') {
       steps {
         echo "Listing docker container..."
