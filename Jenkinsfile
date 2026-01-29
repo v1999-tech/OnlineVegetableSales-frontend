@@ -12,7 +12,6 @@ pipeline {
         git branch: 'master', url: 'https://github.com/v1999-tech/OnlineVegetableSales-frontend.git'
       }
     }
-    stages 
     stage('Build') {
       steps {
         echo "Building with Maven..."
