@@ -32,7 +32,7 @@ pipeline {
     }
     stage('Docker Push to Docker Hub') {
       steps {
-        withcredentials([usernamePassword(credentialsId:'dockerhub-creds', usernameVariable:'DOCKER_USER', passwordVariable:'DOCKER_PASS')]) {
+        withCredentials([usernamePassword(credentialsId:'dockerhub-creds', usernameVariable:'DOCKER_USER', passwordVariable:'DOCKER_PASS')]) {
           bat """docker login -u %DOCKER_USER% -p %DOCKER_PASS% docker push vijetavernekar/ovs:1.0"""
         }
       }
