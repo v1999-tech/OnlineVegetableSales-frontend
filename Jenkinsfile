@@ -42,8 +42,9 @@ pipeline {
     }
     stage('Deploy with Docker Compose') {
       steps {
-        sh "docker-compose down || echo 'No container running'"
-        sh "docker-compose up -d"
+        sh "docker-compose down --remove-orphans || echo 'No container running'"
+        sh "docker-compose up -d --build"
+        sh "docker-compose ps"
       }
     }
     stage('Deploy to Kubernetes') {
