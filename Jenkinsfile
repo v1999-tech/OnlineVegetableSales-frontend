@@ -50,7 +50,11 @@ pipeline {
 
     stage('Deploy to Kubernetes') { 
       steps { withCredentials([file(credentialsId: 'docker-desktop-kubeconfig', variable: 'KUBECONFIG')]) { 
-        sh 'kubectl apply -f k8s/' 
+        sh '''
+        export KUBECONFIG=$KUBECONFIG
+        kubectl apply -f k8s/
+        kubectl get pods
+        ''' 
       } 
             } 
     }
