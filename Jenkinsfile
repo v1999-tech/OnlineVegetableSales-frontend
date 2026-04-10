@@ -48,6 +48,17 @@ pipeline {
       }
     }
 
+
+    stage('Deploy') {
+    steps {
+        sh """
+        helm upgrade --install ovs ./helm/ovs-chart \
+        --set image.repository=$DOCKER_USER/ovs \
+        --set image.tag=${BUILD_NUMBER}
+        """
+    }
+}
+/*
     stage('Deploy to Kubernetes') { 
       steps { withCredentials([file(credentialsId: 'docker-desktop-kubeconfig', variable: 'KUBECONFIG')]) { 
         sh '''
@@ -58,7 +69,7 @@ pipeline {
       } 
             } 
     }
-
+*/
     stage('Verify Deployment') {
       steps {
         echo "Listing docker container..."
