@@ -51,13 +51,17 @@ pipeline {
 
     stage('Deploy') {
     steps {
-      withCredentials([usernamePassword(credentialsId:'dockerhub-creds', usernameVariable:'DOCKER_USER', passwordVariable:'DOCKER_PASS')]) {
-        sh """
-        helm upgrade --install ovs ./helm/ovs-chart \
-        --set image.repository=$DOCKER_USER/ovs \
-        --set image.tag=${BUILD_NUMBER}
-        """
-      }
+        withCredentials([usernamePassword(
+            credentialsId: 'dockerhub-creds',
+            usernameVariable: 'DOCKER_USER',
+            passwordVariable: 'DOCKER_PASS')]) {
+
+            sh """
+            helm upgrade --install ovs ./helm/ovs-chart \
+            --set image.repository=$DOCKER_USER/ovs \
+            --set image.tag=${BUILD_NUMBER}
+            """
+        }
     }
 }
 /*
