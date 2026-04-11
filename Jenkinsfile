@@ -58,7 +58,7 @@ pipeline {
 
             sh """
             helm upgrade --install ovs ./helm/ovs-chart \
-            --set image.repository=$DOCKER_USER/ovs \
+            --set image.repository=\$DOCKER_USER/ovs \
             --set image.tag=${BUILD_NUMBER}
             """
         }
