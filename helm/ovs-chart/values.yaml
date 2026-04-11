@@ -9,3 +9,10 @@ service:
   port: 80
 
 containerPort: 80
+
+env:
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/vegetabledb
+  SPRING_DATASOURCE_USERNAME: postgres
+  SPRING_DATASOURCE_PASSWORD: postgres
+
+resources: {}
