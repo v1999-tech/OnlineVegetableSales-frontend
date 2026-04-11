@@ -15,7 +15,7 @@ services:
       - app-network
 
   app:
-    image: vijetavernekar/ovs:1.0
+    image: vijetavernekar/ovs:${BUILD_NUMBER}
     container_name: ovs-container
     ports:
       - "9090:8080"
