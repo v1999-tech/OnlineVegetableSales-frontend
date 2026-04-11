@@ -27,7 +27,7 @@ pipeline {
     stage('Docker Build & Deploy') {
       steps {
         echo "Building Docker image..."
-        sh "docker build -t vijetavernekar/ovs:1.0 ."
+        sh "docker build -t vijetavernekar/ovs:${BUILD_NUMBER} ."
       }
     }
     stage('Docker Push to Docker Hub') {
@@ -35,7 +35,7 @@ pipeline {
         withCredentials([usernamePassword(credentialsId:'dockerhub-creds', usernameVariable:'DOCKER_USER', passwordVariable:'DOCKER_PASS')]) {
           sh """
           docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push vijetavernekar/ovs:1.0
+          docker push vijetavernekar/ovs:${BUILD_NUMBER}
           """
         }
       }
