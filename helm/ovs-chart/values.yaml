@@ -8,4 +8,4 @@ service:
   type: NodePort
   port: 80
 
-containerPort: 8080
+containerPort: 80
