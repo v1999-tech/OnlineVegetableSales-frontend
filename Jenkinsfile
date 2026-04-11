@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    DOCKER_IMAGE = "ovs:1.0"
+    DOCKER_IMAGE = "ovs:${BUILD_NUMBER}"
     JAR_FILE = "target/ovs.jar"
   }
 
