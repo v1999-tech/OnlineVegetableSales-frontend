@@ -7,9 +7,9 @@ image:
 service:
   type: NodePort
   port: 80
+  targetPort: 8080
 
-containerPort: 80
-
+containerPort: 8080
 env:
   SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/vegetabledb
   SPRING_DATASOURCE_USERNAME: postgres
