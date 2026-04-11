@@ -11,7 +11,7 @@ service:
 
 containerPort: 8080
 env:
-  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/vegetabledb
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/ovsdb
   SPRING_DATASOURCE_USERNAME: postgres
   SPRING_DATASOURCE_PASSWORD: postgres
 
