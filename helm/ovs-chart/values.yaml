@@ -5,7 +5,7 @@ image:
   tag: latest
 
 service:
-  type: NodePort
+  type: ClusterIP
   port: 80
   targetPort: 8080
 
@@ -16,3 +16,7 @@ env:
   SPRING_DATASOURCE_PASSWORD: postgres
 
 resources: {}
+
+ingress:
+  enabled: true
+  host: ovs.local
