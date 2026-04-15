@@ -9,7 +9,7 @@ spec:
   ports:
     - port: {{ .Values.service.port }}
       targetPort: {{ .Values.containerPort }}
-      nodePort: 30009
+      #nodePort: 30009
 
   selector:
     app: {{ .Release.Name }}
