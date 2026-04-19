@@ -34,7 +34,7 @@ pipeline {
     stage('Trivy Scan') {
             steps {
                 sh '''
-                trivy image --exit-code 1 --severity HIGH,CRITICAL vijetavernekar/ovs:${BUILD_NUMBER}
+                trivy image --exit-code 1 --timeout=10m --severity HIGH,CRITICAL vijetavernekar/ovs:${BUILD_NUMBER}
                 '''
             }
         }
