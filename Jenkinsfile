@@ -30,6 +30,14 @@ pipeline {
         sh "docker build -t vijetavernekar/ovs:${BUILD_NUMBER} ."
       }
     }
+
+    stage('Trivy Scan') {
+            steps {
+                sh '''
+                trivy image --exit-code 1 --severity HIGH,CRITICAL vijetavernekar/ovs:${BUILD_NUMBER}
+                '''
+            }
+        }
     stage('Docker Push to Docker Hub') {
       steps {
         withCredentials([usernamePassword(credentialsId:'dockerhub-creds', usernameVariable:'DOCKER_USER', passwordVariable:'DOCKER_PASS')]) {
@@ -42,7 +50,7 @@ pipeline {
     }
     stage('Deploy with Docker Compose') {
       steps {
-        sh "docker-compose down --remove-orphans || echo 'No container running'"
+        sh "docker-compose down --remove-orphans || true'"
         sh "docker-compose up -d --build"
         sh "docker-compose ps"
       }
